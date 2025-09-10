@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Science Club Events</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="event.css" />
+  </head>
+  <body>
+    <div class="header-container">
+      <button
+        class="logo-button"
+        onclick="window.location.href='homepage.html'"
+      >
+        <img src="images/nexus.png" alt="DataNexus Logo" />
+        DataNexus
+      </button>
+
+      <button class="back-button" onclick="window.location.href='index.html'">
+        ← Go Back
+      </button>
+    </div>
+
+    <div class="container">
+      <h1>Club Events</h1>
+
+      <!-- 2023 Events (Previous Year - Second) -->
+      <div class="year-section">
+        <h2 class="year-header">2025</h2>
+        <div class="events-container">
+          <!-- Event 1 -->
+          <div class="event-card" onclick="expandEvent(this)">
+            <div class="event-name">Data Hack 2025</div>
+            <div class="event-date">September 16th,2025</div>
+            <div class="event-status status-upcoming">Upcoming</div>
+
+            <div class="winners-display">
+              <div class="winners-title">Winners</div>
+              <div class="winners-container">
+                <!-- 2nd place -->
+                <div class="winner second-place">
+                  <div class="winner-rank">2nd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Quantum logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Quantum</div>
+                    <div class="winner-score">Accuracy: 94.2%</div>
+                  </div>
+                </div>
+
+                <!-- 1st place -->
+                <div class="winner first-place">
+                  <div class="winner-rank">1st</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Neural logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Neural</div>
+                    <div class="winner-score">Accuracy: 97.8%</div>
+                  </div>
+                </div>
+
+                <!-- 3rd place -->
+                <div class="winner third-place">
+                  <div class="winner-rank">3rd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Bayes logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Bayes</div>
+                    <div class="winner-score">Accuracy: 92.5%</div>
+                  </div>
+                </div>
+              </div>
+              <div class="event-description">
+                Our annual flagship data science competition attracted over 120
+                participants this year. Teams worked on a real-world dataset
+                from healthcare domain, predicting patient outcomes with machine
+                learning models. The event concluded with an exciting
+                presentation round judged by industry experts.
+              </div>
+            </div>
+          </div>
+
+          <!-- Event 2 -->
+          <div class="event-card" onclick="expandEvent(this)">
+            <div class="event-name">AI Symposium</div>
+            <div class="event-date">June 5, 2023</div>
+            <div class="event-status status-concluded">Concluded</div>
+
+            <div class="winners-display">
+              <div class="winners-title">Winners</div>
+              <div class="winners-container">
+                <!-- 2nd place -->
+                <div class="winner second-place">
+                  <div class="winner-rank">2nd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Tensor logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Tensor</div>
+                    <div class="winner-score">Innovation Score: 9.2/10</div>
+                  </div>
+                </div>
+
+                <!-- 1st place -->
+                <div class="winner first-place">
+                  <div class="winner-rank">1st</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team DeepMind logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team DeepMind</div>
+                    <div class="winner-score">Innovation Score: 9.8/10</div>
+                  </div>
+                </div>
+
+                <!-- 3rd place -->
+                <div class="winner third-place">
+                  <div class="winner-rank">3rd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team PyTorch logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team PyTorch</div>
+                    <div class="winner-score">Innovation Score: 8.9/10</div>
+                  </div>
+                </div>
+              </div>
+              <div class="event-description">
+                The AI Symposium featured cutting-edge research presentations
+                from students and faculty. Topics ranged from computer vision
+                advancements to ethical AI considerations. The winning team
+                presented a novel approach to few-shot learning that impressed
+                our panel of judges.
+              </div>
+            </div>
+          </div>
+
+          <!-- Event 3 -->
+          <div class="event-card" onclick="expandEvent(this)">
+            <div class="event-name">Data Visualization Challenge</div>
+            <div class="event-date">September 10-12, 2023</div>
+            <div class="event-status status-concluded">Concluded</div>
+
+            <div class="winners-display">
+              <div class="winners-title">Winners</div>
+              <div class="winners-container">
+                <!-- 2nd place -->
+                <div class="winner second-place">
+                  <div class="winner-rank">2nd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Matplotlib logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Matplotlib</div>
+                    <div class="winner-score">Clarity: 9.1/10</div>
+                  </div>
+                </div>
+
+                <!-- 1st place -->
+                <div class="winner first-place">
+                  <div class="winner-rank">1st</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Seaborn logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Seaborn</div>
+                    <div class="winner-score">Clarity: 9.7/10</div>
+                  </div>
+                </div>
+
+                <!-- 3rd place -->
+                <div class="winner third-place">
+                  <div class="winner-rank">3rd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Seaborn logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Plotly</div>
+                    <div class="winner-score">Clarity: 8.8/10</div>
+                  </div>
+                </div>
+              </div>
+              <div class="event-description">
+                Participants transformed complex climate change datasets into
+                compelling visual narratives. The winning team created an
+                interactive dashboard that effectively communicated 50 years of
+                climate data trends. Judges praised the balance between
+                aesthetic appeal and information clarity.
+              </div>
+            </div>
+          </div>
+
+          <!-- Event 4 -->
+          <div class="event-card" onclick="expandEvent(this)">
+            <div class="event-name">Annual Conference</div>
+            <div class="event-date">December 1-3, 2023</div>
+            <div class="event-status status-concluded">Concluded</div>
+
+            <div class="winners-display">
+              <div class="winners-title">Best Papers</div>
+              <div class="winners-container">
+                <!-- 2nd place -->
+                <div class="winner second-place">
+                  <div class="winner-rank">2nd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Seaborn logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Random</div>
+                    <div class="winner-score">Impact Score: 8.9</div>
+                  </div>
+                </div>
+
+                <!-- 1st place -->
+                <div class="winner first-place">
+                  <div class="winner-rank">1st</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Seaborn logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Forest</div>
+                    <div class="winner-score">Impact Score: 9.5</div>
+                  </div>
+                </div>
+
+                <!-- 3rd place -->
+                <div class="winner third-place">
+                  <div class="winner-rank">3rd</div>
+                  <div class="winner-image-container">
+                    <img
+                      src="image.png"
+                      class="winner-image"
+                      alt="Team Seaborn logo"
+                    />
+                  </div>
+                  <div class="winner-details">
+                    <div class="winner-name">Team Gradient</div>
+                    <div class="winner-score">Impact Score: 8.7</div>
+                  </div>
+                </div>
+              </div>
+              <div class="event-description">
+                Our biggest event of the year featured keynote speakers from
+                leading tech companies, workshops on emerging technologies, and
+                student research presentations. The conference attracted over
+                300 attendees and included networking sessions that led to
+                several internship opportunities for participants.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <script>
+      // Sample data - modify as needed
+      const events = [
+        {
+          label: "Day 1: Introduction & Fundamentals",
+          date: "June 10",
+          status: "completed",
+        },
+        {
+          label: "Day 2: Supervised Learning Techniques",
+          date: "June 11",
+          status: "completed",
+        },
+        {
+          label: "Day 3: Unsupervised Learning",
+          date: "June 12",
+          status: "in-progress",
+        },
+        {
+          label: "Day 4: Deep Learning Basics",
+          date: "June 13",
+          status: "pending",
+        },
+        { label: "Day 5: Competition Day", date: "June 14", status: "pending" },
+      ];
+
+      function renderTimeline(container) {
+        if (!container) return;
+
+        container.innerHTML = "";
+
+        events.forEach((event) => {
+          const item = document.createElement("div");
+          item.className = `timeline-item ${event.status}`;
+          item.innerHTML = `
+                    <div class="timeline-box">
+                        <div class="timeline-label">${event.label}</div>
+                        <div class="timeline-date">${event.date}</div>
+                        <div class="timeline-status">${
+                          event.status === "completed"
+                            ? "Completed"
+                            : event.status === "in-progress"
+                            ? "In Progress"
+                            : "Pending"
+                        }</div>
+                    </div>
+                `;
+          container.appendChild(item);
+        });
+      }
+
+      function expandEvent(card) {
+        // Create overlay
+        const overlay = document.getElementById("overlay");
+        overlay.style.display = "block";
+
+        // Clone the card to preserve original
+        const expandedCard = card.cloneNode(true);
+        expandedCard.classList.add("expanded");
+
+        // Add close button
+        const closeBtn = document.createElement("button");
+        closeBtn.className = "close-btn";
+        closeBtn.innerHTML = "&times;";
+        closeBtn.onclick = function (e) {
+          e.stopPropagation();
+          document.body.removeChild(expandedCard);
+          overlay.style.display = "none";
+          document.body.style.overflow = "auto";
+        };
+        expandedCard.appendChild(closeBtn);
+
+        // If this is the ML Bootcamp card, render the timeline immediately
+        if (
+          expandedCard.querySelector(".event-name").textContent ===
+          "ML Bootcamp"
+        ) {
+          const timelineContainer =
+            expandedCard.querySelector("#timelineContainer");
+          renderTimeline(timelineContainer);
+
+          // Make the timeline visible immediately
+          const timeline = expandedCard.querySelector(".dynamic-timeline");
+          if (timeline) {
+            timeline.style.opacity = "1";
+            timeline.style.display = "block";
+          }
+        }
+
+        // Add to body
+        document.body.appendChild(expandedCard);
+
+        // Prevent scrolling when modal is open
+        document.body.style.overflow = "hidden";
+
+        // Close when clicking outside
+        overlay.onclick = function () {
+          document.body.removeChild(expandedCard);
+          overlay.style.display = "none";
+          document.body.style.overflow = "auto";
+        };
+
+        // Prevent card click from closing when clicking inside
+        expandedCard.onclick = function (e) {
+          e.stopPropagation();
+        };
+      }
+    </script>
+  </body>
+</html>
