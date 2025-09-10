@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "pages/**/*.html": {
+      "runtime": "@vercel/static"
+    }
+  },
+  "routes": [
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    }
+  ]
+}
