@@ -482,6 +482,7 @@ body {
 
 .social-links {
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
 .linkedin {
