@@ -175,6 +175,7 @@ body {
     max-width: 1200px;
     width: 100%;
     gap: 4rem;
+    margin-top: 2.5rem;
 }
 
 .home-text {
@@ -298,9 +299,7 @@ body {
 .section-title {
     font-size: 3rem;
     text-align: center;
-    margin-bottom: 3rem;
     color: var(--primary);
-    margin-top: -10rem;
 
 }
 
@@ -315,7 +314,7 @@ body {
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: start;
-
+    padding: 4rem 2rem;
 
 }
 
@@ -566,11 +565,11 @@ body {
 /* Events Grid */
 .events-grid {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: nowrap;
+    justify-content: space-around;
+    flex-flow: row nowrap;
+    max-width: 300px;
     gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto 3rem;
+    
 }
 
 /* Event Cards - Fixed hover and cursor */
@@ -833,6 +832,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    margin: 4rem auto auto;
 }
 
 .past-events-btn:hover {
@@ -841,38 +841,6 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .events-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .year-title {
-        font-size: 2rem;
-    }
-
-    .past-events-section {
-        justify-content: center;
-    }
-
-    .events-section {
-        padding: 3rem 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .event-card {
-        padding: 1.5rem 1rem;
-    }
-
-    .event-title {
-        font-size: 1.2rem;
-    }
-
-    .events-subtitle {
-        font-size: 1rem;
-    }
-}
 
 /* Teams Section */
 /* Teams Section */
@@ -1091,83 +1059,7 @@ body {
 
 
 /* Responsive Design */
-@media (max-width: 1024px) {
-    .team-card {
-        flex: 0 0 280px;
-        height: 380px;
-    }
 
-    .prev-nav {
-        left: -20px;
-    }
-
-    .next-nav {
-        right: -20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .team-carousel-container {
-        margin: 0 2rem 3rem;
-    }
-
-    .team-card {
-        flex: 0 0 250px;
-        height: 350px;
-        padding: 1.5rem 1rem;
-    }
-
-    .member-image {
-        width: 100px;
-        height: 100px;
-    }
-
-    .member-name {
-        font-size: 1.3rem;
-    }
-
-    .member-position {
-        font-size: 1rem;
-    }
-
-    .carousel-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
-
-    .prev-nav {
-        left: -10px;
-    }
-
-    .next-nav {
-        right: -10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .teams-section {
-        padding: 3rem 1rem;
-    }
-
-    .team-card {
-        flex: 0 0 220px;
-        height: 320px;
-    }
-
-    .member-image {
-        width: 80px;
-        height: 80px;
-    }
-
-    .member-name {
-        font-size: 1.2rem;
-    }
-
-    .linkedin-icon {
-        font-size: 1.5rem;
-    }
-}
 
 /* News Section */
 .news-section {
@@ -1415,108 +1307,3 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Responsive Footer */
-@media (max-width: 768px) {
-    .social-links {
-        gap: 1.5rem;
-    }
-
-    .social-link {
-        width: 45px;
-        height: 45px;
-        font-size: 1.3rem;
-    }
-
-    .site-footer {
-        margin-top: 3rem;
-        padding-top: 1.5rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .social-links {
-        gap: 1rem;
-    }
-
-    .social-link {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
-
-    .copyright p {
-        font-size: 0.8rem;
-    }
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: var(--bg-darker);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        padding: 2rem 0;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .home-title {
-        font-size: 2.5rem;
-    }
-
-    .home-subtitle {
-        font-size: 1.2rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .contact-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .home-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .btn {
-        width: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-container {
-        padding: 0 1rem;
-    }
-
-    .section {
-        padding: 1rem;
-    }
-
-    .home-title {
-        font-size: 2rem;
-    }
-
-    .section-title {
-        font-size: 1.5rem;
-    }
-}

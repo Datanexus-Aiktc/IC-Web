@@ -1,0 +1,288 @@
+                                            /* Navigation */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background-color: var(--bg-darker);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .home-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 1rem;
+    }
+
+    .home-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
+                                                   /* Navigation */    
+/*############################################################################################################################*/ 
+                                                       /*Header*/
+@media (max-width: 480px){
+    .home-content{
+        margin-top: 4.5rem;
+        flex-direction: column;
+    }
+    .home-text {
+    text-align: center;
+    }
+    .home-title {
+        font-size: 2.5rem;
+    }
+
+    .home-subtitle {
+        font-size: 1.2rem;
+    }
+
+}
+                                                        /*Header*/
+/*############################################################################################################################*/
+                                                        /* About */
+@media (max-width: 480px) {
+    .about-content {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+    }
+}                                
+                                                         /* About */
+/*############################################################################################################################*/
+                                                        /* events*/
+@media (max-width: 768px) {
+    .events-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .year-title {
+        font-size: 2rem;
+    }
+
+    .past-events-section {
+        justify-content: center;
+    }
+
+    .events-section {
+        padding: 3rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .events-grid{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        max-width: 200px;
+        margin: auto;
+    }
+    .event-card {
+        padding: 1.5rem 1rem;
+    }
+    .event-title {
+        font-size: 1.2rem;
+    }
+
+    .events-subtitle {
+        font-size: 1rem;
+    }
+    .info-card{
+        max-width: 350px;
+    }
+}
+
+                                                          /* events*/
+/*############################################################################################################################*/
+                                                          /* teams*/
+@media (max-width: 1024px) {
+    .team-card {
+        flex: 0 0 280px;
+        height: 380px;
+    }
+
+    .prev-nav {
+        left: -20px;
+    }
+
+    .next-nav {
+        right: -20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-carousel-container {
+        margin: 0 2rem 3rem;
+    }
+
+    .team-card {
+        flex: 0 0 250px;
+        height: 350px;
+        padding: 1.5rem 1rem;
+    }
+
+    .member-image {
+        width: 100px;
+        height: 100px;
+    }
+
+    .member-name {
+        font-size: 1.3rem;
+    }
+
+    .member-position {
+        font-size: 1rem;
+    }
+
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .prev-nav {
+        left: -10px;
+    }
+
+    .next-nav {
+        right: -10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .teams-section {
+        padding: 3rem 1rem;
+    }
+
+    .team-card {
+        flex: 0 0 220px;
+        height: 320px;
+    }
+
+    .member-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .member-name {
+        font-size: 1.2rem;
+    }
+
+    .linkedin-icon {
+        font-size: 1.5rem;
+    }
+}
+                                                        /* teams*/
+/*############################################################################################################################*/
+                                                        /*News*/
+@media (max-width: 480px){
+    .news-grid{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        max-width: 200px;
+        margin: 2rem auto;
+    }
+    .news-card{
+        padding: 1.5rem 1rem;
+    }
+    #news{
+        border-bottom: 2px solid var(--primary);
+    }
+}
+                                                        /*News*/
+/*############################################################################################################################*/
+                                                        /* footer*/
+
+@media (max-width: 768px) {
+    .social-links {
+        gap: 1.5rem;
+    }
+
+    .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .site-footer {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #contact container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .section-title{
+        border: 2px solid var(--secondary);
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-info{
+        text-align: center;
+    }
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .copyright p {
+        font-size: 0.8rem;
+    }
+}
+                                                        /* footer*/
+/*############################################################################################################################*/
