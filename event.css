@@ -249,7 +249,7 @@
       right: 20px;
       width: 30px;
       height: 30px;
-      background-color: var(--danger);
+      background-color: var(--tertiary);
       color: white;
       border-radius: 50%;
       display: flex;
