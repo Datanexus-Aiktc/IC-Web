@@ -40,12 +40,17 @@
 }
 
 @media (max-width: 480px) {
+    .navbar, .nav-container {
+            width: 100%;
+    }
+    
     .nav-container {
         padding: 0 1rem;
     }
 
     .section {
         padding: 1rem;
+        overflow: hidden;
     }
 
     .home-title {
