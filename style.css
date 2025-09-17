@@ -565,11 +565,12 @@ body {
 /* Events Grid */
 .events-grid {
     display: flex;
-    justify-content: space-around;
-    flex-flow: row nowrap;
-    max-width: 300px;
+    justify-content: center;
+    flex-flow: row wrap;
+    max-width: 1200px;
+    margin: 0 auto;
     gap: 1.5rem;
-    
+
 }
 
 /* Event Cards - Fixed hover and cursor */
@@ -582,6 +583,7 @@ body {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease;
     position: relative;
+    justify-content: center;
     text-align: center;
     cursor: pointer;
     /* Add pointer cursor */
@@ -1306,4 +1308,3 @@ body {
     margin: 0;
     letter-spacing: 0.5px;
 }
-
