@@ -201,95 +201,97 @@
           <div class="year-divider"></div>
         </div>
 
-        <div class="events-grid">
-          <div class="event-card" onclick="expandEvent(this)">
-            <h3 class="event-title">Data Science Worskhop</h3>
-            <p class="event-date">September 26th , 2025</p>
-            <span class="event-status upcoming">Upcoming</span>
-
-            <!-- Hidden expandable content -->
-            <div class="event-details">
-              <div class="event-description">
-                Our annual flagship data science competition attracted over 120
-                participants. Teams worked on real-world healthcare datasets,
-                developing machine learning models to predict patient outcomes.
-              </div>
-            </div>
-          </div>
-
-          <div class="event-card" onclick="expandEvent(this)">
-            <h3 class="event-title">Fundamentals of Data Science </h3>
-            <p class="event-date">October 9th , 2025</p>
-            <span class="event-status upcoming">Upcoming</span>
+        <div class="events-container">
+        <!-- Event Card 1: Data Science Workshop -->
+        <div class="event-card">
+            <h3 class="event-title">Data Science Workshop</h3>
+            <p class="event-date">September 26th, 2025</p>
+            <span class="event-status past">Concluded</span>
 
             <div class="event-details">
-              <div class="event-description">
-                A 5-hour insightful session was conducted by <b>Dr. Tushar Ghorpade </b>
-                on the Fundamentals of Data Science. The session covered the core 
-                concepts of data science, its practical applications, and the various 
-                tools and techniques used in the field. Dr. Ghorpade also highlighted 
-                the career opportunities in data science, guiding students on how to build 
-                a strong foundation and develop the necessary skills for the industry. 
-                The session provided valuable knowledge and inspiration for students aspiring 
-                to pursue a career in data-driven fields.
-              </div>
-              <div class="timeline-display">
-                <div class="timeline-title">Progress Timeline</div>
-                <div id="timelineContainer"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="event-card" onclick="expandEvent(this)">
-            <h3 class="event-title">Nexathon</h3>
-            <p class="event-date">October 18th , 2025</p>
-            <span class="event-status upcoming">UPCOMING</span>
-
-            <div class="event-details">
-              <div class="event-description">
-                Learn more aboth Nexathon
-                <a href="https://nexathon-datanexus.vercel.app/">Click Here</a>.
-              </div>
-              <div class="winners-display">
-                <div class="winners-title">Winners</div>
-                <div class="winners-container">
-                  <div class="winner second-place">
-                    <div class="winner-rank">2nd</div>
-                    <div class="winner-name">TBD</div>
-                    <div class="winner-score">TBD%</div>
-                  </div>
-                  <div class="winner first-place">
-                    <div class="winner-rank">1st</div>
-                    <div class="winner-name">TBD</div>
-                    <div class="winner-score">TBD%</div>
-                  </div>
-                  <div class="winner third-place">
-                    <div class="winner-rank">3rd</div>
-                    <div class="winner-name">TBD</div>
-                    <div class="winner-score">TBD%</div>
-                  </div>
+                <div class="image-slider-container">
+                    <img src="https://placehold.co/600x400/ff8906/0f0e17?text=DS+Image+1" alt="Data Science Event 1" class="slider-image">
+                    <img src="https://placehold.co/600x400/f25f4c/fffffe?text=DS+Image+2" alt="Data Science Event 2" class="slider-image">
+                    <img src="https://placehold.co/600x400/e53170/fffffe?text=DS+Image+3" alt="Data Science Event 3" class="slider-image">
+                    <img src="https://placehold.co/600x400/2e2f3e/a7a9be?text=DS+Image+4" alt="Data Science Event 4" class="slider-image">
                 </div>
-              </div>
+                <div class="event-description">
+                    Our annual flagship data science competition attracted over 120 participants. Teams worked on real-world healthcare datasets, developing machine learning models to predict patient outcomes.
+                </div>
             </div>
-          </div>
-
-          <div class="event-card" onclick="expandEvent(this)">
-            <h3 class="event-title">Java Bootcamp</h3>
-            <p class="event-date">October 14th , 2025</p>
-            <span class="event-status upcoming">UPCOMING</span>
+            <button class="close-btn">&times;</button>
+        </div>
+        
+        <!-- Event Card 2: Fundamentals of Data Science -->
+        <div class="event-card">
+            <h3 class="event-title">Fundamentals of Data Science</h3>
+            <p class="event-date">October 9th, 2025</p>
+            <span class="event-status past">Concluded</span>
 
             <div class="event-details">
-              <div class="event-description">
-                The Java Bootcamp was an intensive, hands-on training session designed 
-                to help students build a strong foundation in Java programming. Participants 
-                learned essential programming concepts such as object-oriented programming (OOP), 
-                data structures, exception handling, and file management. By the end of the bootcamp, 
-                students gained the confidence to write efficient Java programs and understood how 
-                Java is applied in real-world software development.
-              </div>
+                <div class="event-description">
+                    A 5-hour insightful session was conducted by <b>Dr. Tushar Ghorpade</b> on the Fundamentals of Data Science. The session covered the core concepts of data science, its practical applications, and the various tools and techniques used in the field. Dr. Ghorpade also highlighted the career opportunities in data science, guiding students on how to build a strong foundation and develop the necessary skills for the industry. The session provided valuable knowledge and inspiration for students aspiring to pursue a career in data-driven fields.
+                </div>
+                <div class="timeline-display">
+                    <div class="timeline-title">Progress Timeline</div>
+                    <div id="timelineContainer">
+                        <!-- Timeline content would be generated here -->
+                        <p style="text-align:center; opacity:0.7;">Timeline visualization coming soon.</p>
+                    </div>
+                </div>
             </div>
-          </div>
+            <button class="close-btn">&times;</button>
         </div>
+
+        <!-- Event Card 3: Nexathon -->
+        <div class="event-card">
+            <h3 class="event-title">Nexathon</h3>
+            <p class="event-date">October 18th, 2025</p>
+            <span class="event-status upcoming">Upcoming</span>
+
+            <div class="event-details">
+                <div class="event-description">
+                    Learn more about Nexathon. <a href="https://nexathon-datanexus.vercel.app/" target="_blank" rel="noopener noreferrer">Click Here</a>.
+                </div>
+                <div class="winners-display">
+                    <div class="winners-title">Winners</div>
+                    <div class="winners-container">
+                        <div class="winner second-place">
+                            <div class="winner-rank">2nd</div>
+                            <div class="winner-name">TBD</div>
+                            <div class="winner-score">TBD%</div>
+                        </div>
+                        <div class="winner first-place">
+                            <div class="winner-rank">1st</div>
+                            <div class="winner-name">TBD</div>
+                            <div class="winner-score">TBD%</div>
+                        </div>
+                        <div class="winner third-place">
+                            <div class="winner-rank">3rd</div>
+                            <div class="winner-name">TBD</div>
+                            <div class="winner-score">TBD%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="close-btn">&times;</button>
+        </div>
+
+        <!-- Event Card 4: Java Bootcamp -->
+        <div class="event-card">
+            <h3 class="event-title">Java Bootcamp</h3>
+            <p class="event-date">October 14th, 2025</p>
+            <span class="event-status upcoming">Upcoming</span>
+            <div class="event-details">
+                <div class="event-description">
+                    The Java Bootcamp was an intensive, hands-on training session designed to help students build a strong foundation in Java programming. Participants learned essential programming concepts such as object-oriented programming (OOP), data structures, exception handling, and file management. By the end of the bootcamp, students gained the confidence to write efficient Java programs and understood how Java is applied in real-world software development.
+                </div>
+            </div>
+            <button class="close-btn">&times;</button>
+        </div>
+    </div>
+    
+    <div class="overlay"></div>
 
         <div class="past-events-section">
           <a href="events.html" class="past-events-btn"> Past Events → </a>
@@ -653,5 +655,6 @@
     </section>
 
     <script src="script.js"></script>
+    <script src="eventImges.js"></script>
   </body>
 </html>
