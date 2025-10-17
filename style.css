@@ -637,6 +637,7 @@ body {
         
         .event-description {
             margin-bottom: 1.5rem;
+            text-align: center;
         }
 
         .event-description a {
