@@ -501,3 +501,25 @@ let cardsToShow = 4; // Number of cards to show at once
     }, 100);
 })();
 
+function initEventCountdowns() {
+  document.querySelectorAll("[data-date]").forEach(el => {
+    const date = new Date(el.dataset.date).getTime();
+
+    setInterval(() => {
+      const diff = date - new Date().getTime();
+      if (diff <= 0) return;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const mins = Math.floor((diff / (1000 * 60)) % 60);
+      const secs = Math.floor((diff / 1000) % 60);
+
+      el.querySelector("[data-days]") && (el.querySelector("[data-days]").textContent = days);
+      el.querySelector("[data-hours]") && (el.querySelector("[data-hours]").textContent = hours);
+      el.querySelector("[data-minutes]") && (el.querySelector("[data-minutes]").textContent = mins);
+      el.querySelector("[data-seconds]") && (el.querySelector("[data-seconds]").textContent = secs);
+    }, 1000);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initEventCountdowns);
