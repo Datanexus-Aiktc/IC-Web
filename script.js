@@ -505,9 +505,44 @@ function initEventCountdowns() {
   document.querySelectorAll("[data-date]").forEach(el => {
     const date = new Date(el.dataset.date).getTime();
 
-    setInterval(() => {
+    function updateCountdown() {
       const diff = date - new Date().getTime();
-      if (diff <= 0) return;
+
+      // Check if this is the featured event countdown
+      const isFeatured = el.closest('.featured-event') !== null;
+      const downloadBtn = document.getElementById('csvDownloadBtn');
+      const downloadHint = document.querySelector('.download-hint');
+
+      if (diff <= 0) {
+        // Timer has ended
+        const daysEl = el.querySelector("[data-days]");
+        const hoursEl = el.querySelector("[data-hours]");
+        const minsEl = el.querySelector("[data-minutes]");
+        const secsEl = el.querySelector("[data-seconds]");
+
+        if (daysEl) daysEl.textContent = "00";
+        if (hoursEl) hoursEl.textContent = "00";
+        if (minsEl) minsEl.textContent = "00";
+        if (secsEl) secsEl.textContent = "00";
+
+        // Enable the download button for the featured event
+        if (isFeatured && downloadBtn) {
+          downloadBtn.classList.remove('btn-disabled');
+          downloadBtn.classList.add('btn-active');
+          downloadBtn.removeAttribute('onclick');
+          if (downloadHint) {
+            downloadHint.textContent = '✅ The download is now available! Click the button above.';
+            downloadHint.style.color = 'var(--primary)';
+          }
+        }
+
+        // For mini countdowns
+        const miniDays = el.querySelector("[data-days]");
+        if (miniDays && el.classList.contains('mini-countdown')) {
+          miniDays.textContent = "0";
+        }
+        return;
+      }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -518,7 +553,18 @@ function initEventCountdowns() {
       el.querySelector("[data-hours]") && (el.querySelector("[data-hours]").textContent = hours);
       el.querySelector("[data-minutes]") && (el.querySelector("[data-minutes]").textContent = mins);
       el.querySelector("[data-seconds]") && (el.querySelector("[data-seconds]").textContent = secs);
-    }, 1000);
+
+      // Keep button disabled while timer is running
+      if (isFeatured && downloadBtn && !downloadBtn.classList.contains('btn-disabled')) {
+        downloadBtn.classList.add('btn-disabled');
+        downloadBtn.classList.remove('btn-active');
+        downloadBtn.setAttribute('onclick', 'return false;');
+      }
+    }
+
+    // Run immediately and then every second
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   });
 }
 
