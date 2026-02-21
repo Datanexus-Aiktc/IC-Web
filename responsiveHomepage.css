@@ -305,26 +305,60 @@
 
                                             /* teams*/
                                             /*############################################################################################################################*/
-                                            /*News*/
+                                            /*Achievements*/
+                                            @media (max-width: 768px) {
+                                                .achievement-card {
+                                                    flex-direction: column;
+                                                    padding: 2rem 1.5rem;
+                                                }
+
+                                                .achievement-card.reverse {
+                                                    flex-direction: column;
+                                                }
+
+                                                .achievement-carousel {
+                                                    flex: none;
+                                                    width: 100%;
+                                                }
+
+                                                .achievement-card h3 {
+                                                    font-size: 1.2rem;
+                                                }
+                                            }
+
                                             @media (max-width: 480px) {
-                                                .news-grid {
-                                                    display: flex;
-                                                    flex-flow: row wrap;
-                                                    justify-content: center;
-                                                    max-width: 200px;
-                                                    margin: 2rem auto;
+                                                .achievements-section {
+                                                    padding: 3rem 1rem;
                                                 }
 
-                                                .news-card {
+                                                .achievements-list {
+                                                    gap: 2rem;
+                                                }
+
+                                                .achievement-card {
                                                     padding: 1.5rem 1rem;
+                                                    gap: 1.5rem;
                                                 }
 
-                                                #news {
+                                                .achievement-card h3 {
+                                                    font-size: 1.1rem;
+                                                }
+
+                                                .achievement-text p {
+                                                    font-size: 0.85rem;
+                                                }
+
+                                                .achievements-subtitle {
+                                                    font-size: 0.95rem;
+                                                    margin-bottom: 2rem;
+                                                }
+
+                                                #achievements {
                                                     border-bottom: 2px solid var(--primary);
                                                 }
                                             }
 
-                                            /*News*/
+                                            /*Achievements*/
                                             /*############################################################################################################################*/
                                             /* footer*/
 

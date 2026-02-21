@@ -24,7 +24,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const navbar = document.querySelector('.navbar');
             const navbarHeight = navbar ? navbar.offsetHeight : 0;
             const targetPosition = target.offsetTop - navbarHeight;
-            
+
             window.scrollTo({
                 top: targetPosition,
                 behavior: 'smooth'
@@ -49,7 +49,7 @@ window.addEventListener('scroll', () => {
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     let current = '';
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -70,14 +70,14 @@ window.addEventListener('scroll', () => {
 // Contact form handling
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         const name = this.querySelector('input[type="text"]')?.value;
         const email = this.querySelector('input[type="email"]')?.value;
         const subject = this.querySelector('input[placeholder="Subject"]')?.value;
         const message = this.querySelector('textarea')?.value;
-        
+
         if (name && email && subject && message) {
             alert('Thank you for your message! We will get back to you soon.');
             this.reset();
@@ -108,14 +108,14 @@ let autoRotateInterval;
 
 function showCard(index) {
     const cards = document.querySelectorAll('.profile-card');
-    
+
     if (cards.length === 0) return;
-    
+
     // Hide all cards
     cards.forEach(card => {
         card.classList.remove('active');
     });
-    
+
     // Update indicators
     document.querySelectorAll('.card-indicators').forEach(cardIndicators => {
         const indicators = cardIndicators.querySelectorAll('.indicator');
@@ -123,19 +123,19 @@ function showCard(index) {
             indicator.classList.toggle('active', i === index);
         });
     });
-    
+
     // Show current card
     if (cards[index]) {
         cards[index].classList.add('active');
     }
-    
+
     currentCard = index;
 }
 
 function nextCard() {
     const cards = document.querySelectorAll('.profile-card');
     if (cards.length === 0) return;
-    
+
     currentCard = (currentCard + 1) % 2; // Only 2 cards
     showCard(currentCard);
 }
@@ -151,14 +151,14 @@ function startAutoRotate() {
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize scroll animations
     const animateElements = document.querySelectorAll('.feature-card, .event-card, .team-member, .news-card, .info-card');
-    
+
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
-    
+
     // Initialize card slider
     const cards = document.querySelectorAll('.profile-card');
     if (cards.length === 2) {
@@ -179,12 +179,12 @@ const bootcampTimeline = [
 // Function to expand event card
 function expandEvent(card) {
     // Create overlay
-     const overlay = document.getElementById("eventOverlay");
+    const overlay = document.getElementById("eventOverlay");
     if (!overlay) {
         console.error('Event overlay not found');
         return;
     }
-    
+
     overlay.style.display = "block";
 
     // Clone the card to preserve original
@@ -242,7 +242,7 @@ function renderTimeline(container) {
     }
 
     container.innerHTML = "";
-    
+
     const timelineHTML = `
         <div class="timeline-container">
             ${bootcampTimeline.map(event => `
@@ -250,16 +250,15 @@ function renderTimeline(container) {
                     <div class="timeline-content">
                         <div class="timeline-label">${event.label}</div>
                         <div class="timeline-date">${event.date}</div>
-                        <div class="timeline-status">${
-                            event.status === "completed" ? "Completed" :
-                            event.status === "in-progress" ? "In Progress" : "Pending"
-                        }</div>
+                        <div class="timeline-status">${event.status === "completed" ? "Completed" :
+            event.status === "in-progress" ? "In Progress" : "Pending"
+        }</div>
                     </div>
                 </div>
             `).join('')}
         </div>
     `;
-    
+
     container.innerHTML = timelineHTML;
 }
 // Team Carousel Functionality
@@ -317,7 +316,7 @@ let cardsToShow = 4; // Number of cards to show at once
         Array.from(container.querySelectorAll('.clone')).forEach(n => n.remove());
 
         const children = Array.from(container.children);
-        
+
         // Prepend clones of last items
         const lastItems = children.slice(-clonesBefore);
         lastItems.forEach(node => {
@@ -340,7 +339,7 @@ let cardsToShow = 4; // Number of cards to show at once
     function computeStep() {
         const card = container.querySelector('.team-card');
         if (!card) return;
-        
+
         const cardRect = card.getBoundingClientRect();
         const gap = getGapPx();
         step = Math.round(cardRect.width + gap);
@@ -376,7 +375,7 @@ let cardsToShow = 4; // Number of cards to show at once
                 resetAuto();
             });
         }
-        
+
         if (prevBtn) {
             prevBtn.addEventListener('click', () => {
                 go(-1);
@@ -391,14 +390,14 @@ let cardsToShow = 4; // Number of cards to show at once
             resizeTimer = setTimeout(() => {
                 const currentLogical = getLogicalIndex();
                 container.style.transition = 'none';
-                
+
                 cardsToShow = getCardsToShow();
                 computeStep();
-                
+
                 // Reposition to same logical index
                 index = clonesBefore + currentLogical;
                 container.style.transform = `translateX(-${index * step}px)`;
-                
+
                 // Force reflow and restore transition
                 void container.offsetWidth;
                 container.style.transition = 'transform 0.5s ease';
@@ -428,7 +427,7 @@ let cardsToShow = 4; // Number of cards to show at once
     // Move carousel by delta steps
     function go(delta) {
         if (isTransitioning) return;
-        
+
         isTransitioning = true;
         index += delta;
         applyTransform();
@@ -447,14 +446,14 @@ let cardsToShow = 4; // Number of cards to show at once
             index = clonesBefore + logical;
             snapToPosition();
         }
-        
+
         // If we've moved before the start clones
         if (index < clonesBefore) {
             const logical = getLogicalIndex();
             index = clonesBefore + logical;
             snapToPosition();
         }
-        
+
         isTransitioning = false;
     }
 
@@ -502,70 +501,148 @@ let cardsToShow = 4; // Number of cards to show at once
 })();
 
 function initEventCountdowns() {
-  document.querySelectorAll("[data-date]").forEach(el => {
-    const date = new Date(el.dataset.date).getTime();
+    document.querySelectorAll("[data-date]").forEach(el => {
+        const date = new Date(el.dataset.date).getTime();
 
-    function updateCountdown() {
-      const diff = date - new Date().getTime();
+        function updateCountdown() {
+            const diff = date - new Date().getTime();
 
-      // Check if this is the featured event countdown
-      const isFeatured = el.closest('.featured-event') !== null;
-      const downloadBtn = document.getElementById('csvDownloadBtn');
-      const downloadHint = document.querySelector('.download-hint');
+            // Check if this is the featured event countdown
+            const isFeatured = el.closest('.featured-event') !== null;
+            const downloadBtn = document.getElementById('csvDownloadBtn');
+            const downloadHint = document.querySelector('.download-hint');
 
-      if (diff <= 0) {
-        // Timer has ended
-        const daysEl = el.querySelector("[data-days]");
-        const hoursEl = el.querySelector("[data-hours]");
-        const minsEl = el.querySelector("[data-minutes]");
-        const secsEl = el.querySelector("[data-seconds]");
+            if (diff <= 0) {
+                // Timer has ended
+                const daysEl = el.querySelector("[data-days]");
+                const hoursEl = el.querySelector("[data-hours]");
+                const minsEl = el.querySelector("[data-minutes]");
+                const secsEl = el.querySelector("[data-seconds]");
 
-        if (daysEl) daysEl.textContent = "00";
-        if (hoursEl) hoursEl.textContent = "00";
-        if (minsEl) minsEl.textContent = "00";
-        if (secsEl) secsEl.textContent = "00";
+                if (daysEl) daysEl.textContent = "00";
+                if (hoursEl) hoursEl.textContent = "00";
+                if (minsEl) minsEl.textContent = "00";
+                if (secsEl) secsEl.textContent = "00";
 
-        // Enable the download button for the featured event
-        if (isFeatured && downloadBtn) {
-          downloadBtn.classList.remove('btn-disabled');
-          downloadBtn.classList.add('btn-active');
-          downloadBtn.removeAttribute('onclick');
-          if (downloadHint) {
-            downloadHint.textContent = '✅ The download is now available! Click the button above.';
-            downloadHint.style.color = 'var(--primary)';
-          }
+                // Enable the download button for the featured event
+                if (isFeatured && downloadBtn) {
+                    downloadBtn.classList.remove('btn-disabled');
+                    downloadBtn.classList.add('btn-active');
+                    downloadBtn.removeAttribute('onclick');
+                    if (downloadHint) {
+                        downloadHint.textContent = '✅ The download is now available! Click the button above.';
+                        downloadHint.style.color = 'var(--primary)';
+                    }
+                }
+
+                // For mini countdowns
+                const miniDays = el.querySelector("[data-days]");
+                if (miniDays && el.classList.contains('mini-countdown')) {
+                    miniDays.textContent = "0";
+                }
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+            const secs = Math.floor((diff / 1000) % 60);
+
+            el.querySelector("[data-days]") && (el.querySelector("[data-days]").textContent = days);
+            el.querySelector("[data-hours]") && (el.querySelector("[data-hours]").textContent = hours);
+            el.querySelector("[data-minutes]") && (el.querySelector("[data-minutes]").textContent = mins);
+            el.querySelector("[data-seconds]") && (el.querySelector("[data-seconds]").textContent = secs);
+
+            // Keep button disabled while timer is running
+            if (isFeatured && downloadBtn && !downloadBtn.classList.contains('btn-disabled')) {
+                downloadBtn.classList.add('btn-disabled');
+                downloadBtn.classList.remove('btn-active');
+                downloadBtn.setAttribute('onclick', 'return false;');
+            }
         }
 
-        // For mini countdowns
-        const miniDays = el.querySelector("[data-days]");
-        if (miniDays && el.classList.contains('mini-countdown')) {
-          miniDays.textContent = "0";
-        }
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-
-      el.querySelector("[data-days]") && (el.querySelector("[data-days]").textContent = days);
-      el.querySelector("[data-hours]") && (el.querySelector("[data-hours]").textContent = hours);
-      el.querySelector("[data-minutes]") && (el.querySelector("[data-minutes]").textContent = mins);
-      el.querySelector("[data-seconds]") && (el.querySelector("[data-seconds]").textContent = secs);
-
-      // Keep button disabled while timer is running
-      if (isFeatured && downloadBtn && !downloadBtn.classList.contains('btn-disabled')) {
-        downloadBtn.classList.add('btn-disabled');
-        downloadBtn.classList.remove('btn-active');
-        downloadBtn.setAttribute('onclick', 'return false;');
-      }
-    }
-
-    // Run immediately and then every second
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  });
+        // Run immediately and then every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", initEventCountdowns);
+
+// Achievement Image Carousels
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("[data-carousel]").forEach(carousel => {
+        const track = carousel.querySelector(".carousel-track");
+        const images = track.querySelectorAll("img");
+        const dots = carousel.querySelectorAll(".carousel-dot");
+        const pauseBtn = carousel.querySelector(".carousel-pause");
+
+        if (images.length === 0) return;
+
+        let current = 0;
+        let isPlaying = true;
+        let timer = null;
+        const INTERVAL = 3000;
+
+        // Activate first image
+        images[0].classList.add("active");
+
+        function goTo(index) {
+            images[current].classList.remove("active");
+            dots[current].classList.remove("active");
+            current = index;
+            images[current].classList.add("active");
+            dots[current].classList.add("active");
+        }
+
+        function next() {
+            goTo((current + 1) % images.length);
+        }
+
+        function startAuto() {
+            stopAuto();
+            timer = setInterval(next, INTERVAL);
+        }
+
+        function stopAuto() {
+            if (timer) {
+                clearInterval(timer);
+                timer = null;
+            }
+        }
+
+        // Dot clicks
+        dots.forEach(dot => {
+            dot.addEventListener("click", () => {
+                const idx = parseInt(dot.dataset.slide, 10);
+                goTo(idx);
+                if (isPlaying) startAuto(); // reset timer
+            });
+        });
+
+        // Pause / Play button
+        if (pauseBtn) {
+            pauseBtn.addEventListener("click", () => {
+                isPlaying = !isPlaying;
+                if (isPlaying) {
+                    startAuto();
+                    pauseBtn.textContent = "⏸";
+                } else {
+                    stopAuto();
+                    pauseBtn.textContent = "▶";
+                }
+            });
+        }
+
+        // Pause on hover, resume on leave
+        carousel.addEventListener("mouseenter", () => {
+            if (isPlaying) stopAuto();
+        });
+        carousel.addEventListener("mouseleave", () => {
+            if (isPlaying) startAuto();
+        });
+
+        // Start auto-advance
+        startAuto();
+    });
+});
