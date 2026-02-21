@@ -1399,6 +1399,46 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* Website Team Credits */
+.credits-section {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem;
+    border-top: 1px solid rgba(255, 137, 6, 0.1);
+    margin-top: 1.5rem;
+}
+
+.credits-title {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    opacity: 0.7;
+}
+
+.credits-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.credit-member {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.credit-member small {
+    font-size: 0.65rem;
+    opacity: 0.7;
+}
+
+.credit-divider {
+    color: var(--text-muted);
+    opacity: 0.3;
+    font-size: 0.6rem;
+}
+
 /* Featured Event */
 .featured-event {
     background: rgba(255, 255, 255, 0.02);
