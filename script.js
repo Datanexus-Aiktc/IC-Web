@@ -510,7 +510,7 @@ function renderTimeline(container) {
 function initEventCountdowns() {
   // 1. HARDCODE YOUR TARGET DATES HERE
   // Format: YYYY-MM-DDTHH:MM:SS
-  const featuredEventDate = new Date("2026-02-22T22:16:00").getTime();
+  const featuredEventDate = new Date("2026-02-26T09:00:00").getTime();
 
   // 2. Select the countdown container manually (removed data-date dependency)
   const featuredCountdownElement = document.querySelector(".featured-event .countdown");
@@ -541,8 +541,8 @@ function initEventCountdowns() {
         downloadBtn.classList.add("btn-active");
 
         // YOUR SECRET FILE NAME
-        downloadBtn.setAttribute("href", "PB_Competition_Dataset_DNC.csv");
-        downloadBtn.setAttribute("download", "PowerBI_Dataset_DNC.csv");
+        downloadBtn.setAttribute("href", "PB_Competition_Dataset_DNC.xlsx");
+        downloadBtn.setAttribute("download", "PowerBI_Dataset_DNC.xlsx");
 
         if (downloadHint) {
           downloadHint.textContent = "✅ The download is now available! Click the button above.";
