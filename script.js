@@ -506,74 +506,71 @@ function renderTimeline(container) {
 })();
 
 // TIMER LOGIC WITH SECURITY FIX
+// TIMER LOGIC WITH SECURITY FIX (Date moved to JS)
 function initEventCountdowns() {
-  document.querySelectorAll("[data-date]").forEach(el => {
-    const date = new Date(el.dataset.date).getTime();
+  // 1. HARDCODE YOUR TARGET DATES HERE
+  // Format: YYYY-MM-DDTHH:MM:SS
+  const featuredEventDate = new Date("2026-02-26T08:45:00").getTime();
 
-    function updateCountdown() {
-      const diff = date - new Date().getTime();
+  // 2. Select the countdown container manually (removed data-date dependency)
+  const featuredCountdownElement = document.querySelector(".featured-event .countdown");
+  const downloadBtn = document.getElementById("csvDownloadBtn");
+  const downloadHint = document.querySelector(".download-hint");
 
-      const isFeatured = el.closest(".featured-event") !== null;
-      const downloadBtn = document.getElementById("csvDownloadBtn");
-      const downloadHint = document.querySelector(".download-hint");
+  if (!featuredCountdownElement) return;
 
-      if (diff <= 0) {
-        // Timer has ended
-        const daysEl = el.querySelector("[data-days]");
-        const hoursEl = el.querySelector("[data-hours]");
-        const minsEl = el.querySelector("[data-minutes]");
-        const secsEl = el.querySelector("[data-seconds]");
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = featuredEventDate - now;
 
-        if (daysEl) daysEl.textContent = "00";
-        if (hoursEl) hoursEl.textContent = "00";
-        if (minsEl) minsEl.textContent = "00";
-        if (secsEl) secsEl.textContent = "00";
+    if (diff <= 0) {
+      // Timer has ended
+      const daysEl = featuredCountdownElement.querySelector("[data-days]");
+      const hoursEl = featuredCountdownElement.querySelector("[data-hours]");
+      const minsEl = featuredCountdownElement.querySelector("[data-minutes]");
+      const secsEl = featuredCountdownElement.querySelector("[data-seconds]");
 
-        // EXTREMELY IMPORTANT: Only inject the download link when time hits zero!
-        if (isFeatured && downloadBtn && !downloadBtn.hasAttribute("href")) {
-          downloadBtn.classList.remove("btn-disabled");
-          downloadBtn.classList.add("btn-active");
+      if (daysEl) daysEl.textContent = "00";
+      if (hoursEl) hoursEl.textContent = "00";
+      if (minsEl) minsEl.textContent = "00";
+      if (secsEl) secsEl.textContent = "00";
 
-          // REPLACE THIS STRING WITH YOUR SECRET FILE NAME
-          downloadBtn.setAttribute("href", "dataset_pbi_secret_2026.csv");
-          downloadBtn.setAttribute("download", "PowerBI_Dataset.csv");
+      // Inject the download link
+      if (downloadBtn && !downloadBtn.hasAttribute("href")) {
+        downloadBtn.classList.remove("btn-disabled");
+        downloadBtn.classList.add("btn-active");
 
-          if (downloadHint) {
-            downloadHint.textContent = "✅ The download is now available! Click the button above.";
-            downloadHint.style.color = "var(--primary)";
-          }
+        // YOUR SECRET FILE NAME
+        downloadBtn.setAttribute("href", "pbc_dataset_x7k9q2m.csv");
+        downloadBtn.setAttribute("download", "PowerBI_Dataset.csv");
+
+        if (downloadHint) {
+          downloadHint.textContent = "✅ The download is now available! Click the button above.";
+          downloadHint.style.color = "var(--primary)";
         }
-
-        // For mini countdowns
-        const miniDays = el.querySelector("[data-days]");
-        if (miniDays && el.classList.contains("mini-countdown")) {
-          miniDays.textContent = "0";
-        }
-        return;
       }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const mins = Math.floor((diff / (1000 * 60)) % 60);
-      const secs = Math.floor((diff / 1000) % 60);
-
-      el.querySelector("[data-days]") && (el.querySelector("[data-days]").textContent = days);
-      el.querySelector("[data-hours]") && (el.querySelector("[data-hours]").textContent = hours);
-      el.querySelector("[data-minutes]") && (el.querySelector("[data-minutes]").textContent = mins);
-      el.querySelector("[data-seconds]") && (el.querySelector("[data-seconds]").textContent = secs);
-
-      // Ensure button stays disabled and link-free while timer is running
-      if (isFeatured && downloadBtn && !downloadBtn.classList.contains("btn-disabled")) {
-        downloadBtn.classList.add("btn-disabled");
-        downloadBtn.classList.remove("btn-active");
-        downloadBtn.removeAttribute("href");
-        downloadBtn.removeAttribute("download");
-      }
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  });
+    // Math for the countdown
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    // Update the HTML numbers
+    featuredCountdownElement.querySelector("[data-days]") &&
+      (featuredCountdownElement.querySelector("[data-days]").textContent = days);
+    featuredCountdownElement.querySelector("[data-hours]") &&
+      (featuredCountdownElement.querySelector("[data-hours]").textContent = hours);
+    featuredCountdownElement.querySelector("[data-minutes]") &&
+      (featuredCountdownElement.querySelector("[data-minutes]").textContent = mins);
+    featuredCountdownElement.querySelector("[data-seconds]") &&
+      (featuredCountdownElement.querySelector("[data-seconds]").textContent = secs);
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 }
 
 document.addEventListener("DOMContentLoaded", initEventCountdowns);
