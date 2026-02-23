@@ -578,7 +578,7 @@ function initMiniCountdowns() {
   // 1. HARDCODE YOUR TARGET DATES HERE
   // Map the HTML IDs to their respective secure dates
   const miniEvents = {
-    "workshop-timer": new Date("2026-01-30T10:00:00").getTime(),
+    "workshop-timer": new Date("2026-02-17T10:00:00").getTime(),
     "prepit-timer": new Date("2026-04-12T10:00:00").getTime(),
   };
 
