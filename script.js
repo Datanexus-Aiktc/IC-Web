@@ -572,6 +572,50 @@ function initEventCountdowns() {
   updateCountdown();
   setInterval(updateCountdown, 1000);
 }
+// Logic for Mini Event Countdowns (PREPIT, Workshops, etc.)
+// Logic for Mini Event Countdowns (PREPIT, Workshops, etc.) WITH SECURITY FIX
+function initMiniCountdowns() {
+  // 1. HARDCODE YOUR TARGET DATES HERE
+  // Map the HTML IDs to their respective secure dates
+  const miniEvents = {
+    "workshop-timer": new Date("2026-01-30T10:00:00").getTime(),
+    "prepit-timer": new Date("2026-04-12T10:00:00").getTime(),
+  };
+
+  function updateMiniCountdowns() {
+    const now = new Date().getTime();
+
+    // Loop through each event in our secure list above
+    for (const [eventId, targetDate] of Object.entries(miniEvents)) {
+      const container = document.getElementById(eventId);
+      if (!container) continue; // Skip if the element isn't found on the page
+
+      const diff = targetDate - now;
+      const daysSpan = container.querySelector("[data-days]");
+
+      if (daysSpan) {
+        if (diff <= 0) {
+          daysSpan.textContent = "00";
+        } else {
+          // Calculate remaining days
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          // Pad with a leading zero if single digit (e.g., "09")
+          daysSpan.textContent = days.toString().padStart(2, "0");
+        }
+      }
+    }
+  }
+
+  // Run immediately, then check every minute
+  updateMiniCountdowns();
+  setInterval(updateMiniCountdowns, 60000);
+}
+
+// Initialize the mini countdowns when the page loads
+document.addEventListener("DOMContentLoaded", initMiniCountdowns);
+
+// Initialize the mini countdowns when the page loads
+document.addEventListener("DOMContentLoaded", initMiniCountdowns);
 
 document.addEventListener("DOMContentLoaded", initEventCountdowns);
 
