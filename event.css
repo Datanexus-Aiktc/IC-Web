@@ -458,3 +458,13 @@ body {
     align-self: flex-end;
   }
 }
+@media (max-width: 480px) {
+  /* ... your other mobile rules ... */
+
+  .event-card {
+    /* Keep extra padding at the bottom for mobile too */
+    padding: 1.2rem 1.2rem 3rem 1.2rem;
+    height: auto;
+    min-height: 160px;
+  }
+}
