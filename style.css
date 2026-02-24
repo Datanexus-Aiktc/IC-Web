@@ -408,7 +408,8 @@ body {
   height: 100%;
   background: var(--card-bg-light);
   border-radius: 20px;
-  padding: 2rem 2rem 1.5rem 2rem;
+  /* Changed from 2rem to 1.5rem to make the internal area bigger */
+  padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   opacity: 0;
   transform: translateX(100px);
@@ -417,7 +418,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
-  /* FIX: Prevents invisible cards from blocking your clicks */
   pointer-events: none;
 }
 
@@ -473,7 +473,7 @@ body {
 
 .profile-description {
   color: var(--text-secondary);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   line-height: 1.5;
 }
 
@@ -488,17 +488,31 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem; /* Reduced from 1rem */
+  flex-shrink: 0; /* Ensures image never gets squashed */
 }
 
 .card-content {
   text-align: center;
-  flex: 1;
+  flex: 1 1 auto; /* Allows box to grow to fill space */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* FIX: Starts content at top so Name isn't hidden */
+  align-items: center;
   margin-bottom: 1rem;
-  /* Add margin to separate from indicators */
+  overflow-y: auto; /* FIX: Enables the scrollbar */
+  padding: 0 10px; /* Adds breathing room for the scrollbar */
+  min-height: 0; /* Crucial for flexbox scrolling to work */
+}
+.card-content::-webkit-scrollbar {
+  width: 4px;
+}
+.card-content::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+.card-content::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .social-links {
