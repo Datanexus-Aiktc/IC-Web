@@ -249,24 +249,23 @@ function renderTimeline(container) {
   const timelineHTML = `
         <div class="timeline-container">
             ${bootcampTimeline
-              .map(
-                event => `
+      .map(
+        event => `
                 <div class="timeline-item ${event.status}">
                     <div class="timeline-content">
                         <div class="timeline-label">${event.label}</div>
                         <div class="timeline-date">${event.date}</div>
-                        <div class="timeline-status">${
-                          event.status === "completed"
-                            ? "Completed"
-                            : event.status === "in-progress"
-                              ? "In Progress"
-                              : "Pending"
-                        }</div>
+                        <div class="timeline-status">${event.status === "completed"
+            ? "Completed"
+            : event.status === "in-progress"
+              ? "In Progress"
+              : "Pending"
+          }</div>
                     </div>
                 </div>
             `
-              )
-              .join("")}
+      )
+      .join("")}
         </div>
     `;
 
