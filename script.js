@@ -546,7 +546,7 @@ function initEventCountdowns() {
 
         if (downloadHint) {
           downloadHint.textContent =
-            "✅ The download is now available! Click the button above <b>This dataset is only for late comers</b>.";
+            "✅ The download is now available! Click the button above This dataset is only for late comers.";
           downloadHint.style.color = "var(--primary)";
         }
       }
