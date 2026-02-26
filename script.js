@@ -249,23 +249,24 @@ function renderTimeline(container) {
   const timelineHTML = `
         <div class="timeline-container">
             ${bootcampTimeline
-      .map(
-        event => `
+              .map(
+                event => `
                 <div class="timeline-item ${event.status}">
                     <div class="timeline-content">
                         <div class="timeline-label">${event.label}</div>
                         <div class="timeline-date">${event.date}</div>
-                        <div class="timeline-status">${event.status === "completed"
-            ? "Completed"
-            : event.status === "in-progress"
-              ? "In Progress"
-              : "Pending"
-          }</div>
+                        <div class="timeline-status">${
+                          event.status === "completed"
+                            ? "Completed"
+                            : event.status === "in-progress"
+                              ? "In Progress"
+                              : "Pending"
+                        }</div>
                     </div>
                 </div>
             `
-      )
-      .join("")}
+              )
+              .join("")}
         </div>
     `;
 
@@ -509,7 +510,7 @@ function renderTimeline(container) {
 function initEventCountdowns() {
   // 1. HARDCODE YOUR TARGET DATES HERE
   // Format: YYYY-MM-DDTHH:MM:SS
-  const featuredEventDate = new Date("2026-02-26T09:00:00").getTime();
+  const featuredEventDate = new Date("2026-02-26T09:45:00").getTime();
 
   // 2. Select the countdown container manually (removed data-date dependency)
   const featuredCountdownElement = document.querySelector(".featured-event .countdown");
@@ -544,7 +545,8 @@ function initEventCountdowns() {
         downloadBtn.setAttribute("download", "PowerBI_Dataset_DNC.xlsx");
 
         if (downloadHint) {
-          downloadHint.textContent = "✅ The download is now available! Click the button above.";
+          downloadHint.textContent =
+            "✅ The download is now available! Click the button above <b>This dataset is only for late comers</b>.";
           downloadHint.style.color = "var(--primary)";
         }
       }
