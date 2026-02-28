@@ -697,3 +697,34 @@ document.addEventListener("DOMContentLoaded", function () {
     startAuto();
   });
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const prepitDate = new Date("2026-04-12T09:00:00").getTime();
+  const countdown = document.getElementById("prepitCountdown");
+
+  if (!countdown) return;
+
+  const daysEl = countdown.querySelector("[data-days]");
+  const hoursEl = countdown.querySelector("[data-hours]");
+  const minutesEl = countdown.querySelector("[data-minutes]");
+  const secondsEl = countdown.querySelector("[data-seconds]");
+
+  setInterval(() => {
+    const now = Date.now();
+    const diff = prepitDate - now;
+
+    if (diff <= 0) {
+      daysEl.textContent = "00";
+      hoursEl.textContent = "00";
+      minutesEl.textContent = "00";
+      secondsEl.textContent = "00";
+      return;
+    }
+
+    daysEl.textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+    hoursEl.textContent = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    minutesEl.textContent = Math.floor((diff / (1000 * 60)) % 60);
+    secondsEl.textContent = Math.floor((diff / 1000) % 60);
+  }, 1000);
+});
