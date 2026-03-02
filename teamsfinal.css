@@ -218,3 +218,63 @@ body {
   .team-card { width: 280px; height: auto; padding-bottom: 28px; }
   .team-card h3 { font-size: 1.1rem; }
 }
+
+
+/* ---------- Header Styles (from Events page) ---------- */
+.teams-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: #0f0e17; /* matches teams page background */
+  border-bottom: 1px solid rgba(255, 137, 6, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #fffffe; /* heading color in teamsfinal.css */
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.header-logo img {
+  height: 35px;
+  display: block;
+}
+
+.header-back-btn {
+  padding: 0.5rem 1.2rem;
+  background: transparent;
+  color: #ff8906;               /* accent color used across the site */
+  border: 1px solid #ff8906;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.header-back-btn:hover {
+  background: #ff8906;
+  color: #0f0e17;
+  box-shadow: 0 8px 20px rgba(255,137,6,0.12);
+}
+
+/* small screens: stack header items */
+@media (max-width: 480px) {
+  .events-page-header {
+    padding: 0.9rem 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .header-back-btn {
+    align-self: flex-end;
+  }
+}
