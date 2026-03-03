@@ -698,9 +698,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 document.addEventListener("DOMContentLoaded", () => {
-  const prepitDate = new Date("2026-04-12T09:00:00").getTime();
+  const prepitDate = new Date("2026-04-18T09:00:00").getTime();
   const countdown = document.getElementById("prepitCountdown");
 
   if (!countdown) return;
