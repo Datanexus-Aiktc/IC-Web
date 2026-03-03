@@ -71,45 +71,21 @@ window.addEventListener("scroll", () => {
 
 // Contact form handling
 // GOOGLE SHEETS CONTACT FORM HANDLER
-const scriptURL =
-  "https://script.google.com/macros/s/AKfycbynf_1GSBQv3D4R4_6BES2i3x73KeZ-xW3ItsExRq7f2j-vMJzLcHv7kCDNBjMfyd0CNA/exec"; // <--- PASTE YOUR URL HERE!
-const form = document.getElementById("google-contact-form");
-const btn = document.getElementById("submit-btn");
-const statusMsg = document.getElementById("form-status");
+const contactForm = document.querySelector(".contact-form");
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    const name = this.querySelector('input[type="text"]')?.value;
+    const email = this.querySelector('input[type="email"]')?.value;
+    const subject = this.querySelector('input[placeholder="Subject"]')?.value;
+    const message = this.querySelector("textarea")?.value;
 
-if (form) {
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    // Disable button to prevent double clicks
-    btn.disabled = true;
-    btn.innerHTML = "Sending...";
-
-    fetch(scriptURL, { method: "POST", body: new FormData(form) })
-      .then(response => {
-        // Success!
-        statusMsg.style.display = "block";
-        statusMsg.style.color = "green";
-        statusMsg.innerHTML = "✅ Message Sent Successfully!";
-        btn.innerHTML = "Sent";
-        form.reset();
-
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          btn.disabled = false;
-          btn.innerHTML = "Send Message";
-          statusMsg.style.display = "none";
-        }, 3000);
-      })
-      .catch(error => {
-        // Error!
-        console.error("Error!", error.message);
-        statusMsg.style.display = "block";
-        statusMsg.style.color = "red";
-        statusMsg.innerHTML = "❌ Error! Please try again later.";
-        btn.disabled = false;
-        btn.innerHTML = "Send Message";
-      });
+    if (name && email && subject && message) {
+      e.preventDefault();
+      alert("Thank you for your message! We will get back to you soon.");
+      this.reset();
+    } else {
+      alert("Please fill in all fields.");
+    }
   });
 }
 
