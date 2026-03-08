@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - Prep IT</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      :root {
+        --primary: #4caf50;
+        --dark: #1e1e2f;
+        --light: #f4f4f9;
+        --card-bg: #2c2c3e;
+        --warning: #ff4757;
+        --info: #0984e3;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--dark);
+        color: var(--light);
+        margin: 0;
+        padding: 30px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #444;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .header h1 {
+        margin: 0;
+        color: var(--primary);
+      }
+
+      .header-buttons {
+        display: flex;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1rem;
+        transition: 0.2s;
+      }
+
+      .btn-export {
+        background: var(--info);
+        color: white;
+      }
+      .btn-export:hover {
+        opacity: 0.8;
+      }
+
+      .btn-export-top {
+        background: var(--primary);
+        color: #000;
+      }
+      .btn-export-top:hover {
+        opacity: 0.8;
+      }
+
+      .btn-download {
+        background: #555;
+        color: white;
+        padding: 5px 10px;
+        font-size: 0.9rem;
+      }
+      .btn-download:hover {
+        background: var(--primary);
+        color: #000;
+      }
+
+      .btn-sort {
+        background: #444;
+        color: white;
+        margin-left: 10px;
+      }
+      .btn-sort:hover {
+        background: #666;
+      }
+
+      /* Stats Cards */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+
+      .stat-card {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-bottom: 4px solid var(--primary);
+      }
+
+      .stat-card h3 {
+        margin: 0 0 10px 0;
+        font-size: 1.1rem;
+        color: #aaa;
+      }
+      .stat-card p {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: bold;
+      }
+
+      /* Controls */
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      /* Table */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--card-bg);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      th,
+      td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #444;
+      }
+
+      th {
+        background: #222;
+        color: var(--primary);
+        font-weight: bold;
+      }
+      tr:hover {
+        background: #363649;
+      }
+
+      .rank-col {
+        font-weight: bold;
+        color: var(--info);
+      }
+      .score-col {
+        font-weight: bold;
+        color: var(--primary);
+      }
+      .error-msg {
+        color: var(--warning);
+        font-weight: bold;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>🛠️ DNC Admin - Prep IT Technical Round</h1>
+      <div class="header-buttons">
+        <button class="btn btn-export-top" onclick="exportTop12CSV()">
+          🏆 Export Top 12 (CSV)
+        </button>
+        <button class="btn btn-export" onclick="exportAllCSV()">📥 Export All Data (CSV)</button>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card" style="border-color: var(--info)">
+        <h3>Total Eligible</h3>
+        <p id="stat-eligible">0</p>
+      </div>
+      <div class="stat-card" style="border-color: var(--primary)">
+        <h3>Tests Completed</h3>
+        <p id="stat-completed">0</p>
+      </div>
+      <div class="stat-card" style="border-color: var(--warning)">
+        <h3>Highest Score</h3>
+        <p id="stat-max-score">0</p>
+      </div>
+    </div>
+
+    <div class="controls">
+      <h2>Top 12 Leaderboard</h2>
+      <div>
+        <button class="btn btn-sort" onclick="toggleSort()">
+          ⇅ Sort: <span id="sort-label">Descending</span>
+        </button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Roll Number</th>
+          <th>Score</th>
+          <th>Time Taken</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr>
+          <td colspan="6" style="text-align: center">Loading Data...</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      // ==========================================
+      // 1. CONFIGURATION & SUPABASE
+      // ==========================================
+      const SUPABASE_URL = "https://khmimhnzhrcnphgohirr.supabase.co";
+      const SUPABASE_ANON_KEY =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtobWltaG56aHJjbnBoZ29oaXJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI3MjMzMzMsImV4cCI6MjA4ODI5OTMzM30.bfFLyrG15K3fJijNxjx2cHdQq15ZshUUw1wWlomx_qQ";
+
+      let supabaseInstance = null;
+      let allData = [];
+      let completedData = [];
+      let isDescending = true; // Default sort
+
+      // ==========================================
+      // 2. FETCH DATA SAFELY
+      // ==========================================
+      async function fetchData() {
+        const tbody = document.getElementById("table-body");
+
+        if (!supabaseInstance) {
+          if (window.supabase) {
+            supabaseInstance = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          } else {
+            tbody.innerHTML = `<tr><td colspan="6" class="error-msg">Error: Supabase blocked. Check your internet or disable AdBlockers.</td></tr>`;
+            return;
+          }
+        }
+
+        try {
+          const { data, error } = await supabaseInstance.from("prepit_candidates").select("*");
+
+          if (error) throw error;
+
+          allData = data || [];
+          completedData = allData.filter(student => student.completed === true);
+
+          updateStats();
+          renderTable();
+        } catch (err) {
+          console.error("Database Error:", err);
+          tbody.innerHTML = `<tr><td colspan="6" class="error-msg">Failed to load data: ${err.message}. Did you disable Row Level Security?</td></tr>`;
+        }
+      }
+
+      // ==========================================
+      // 3. RENDER UI
+      // ==========================================
+      function updateStats() {
+        document.getElementById("stat-eligible").innerText = allData.length;
+        document.getElementById("stat-completed").innerText = completedData.length;
+
+        if (completedData.length > 0) {
+          const maxScore = Math.max(...completedData.map(s => s.score));
+          document.getElementById("stat-max-score").innerText = maxScore;
+        }
+      }
+
+      function sortData() {
+        completedData.sort((a, b) => {
+          if (isDescending) {
+            // Descending: Highest score first. TIE BREAKER: lower time wins
+            if (b.score === a.score) return a.time_taken_seconds - b.time_taken_seconds;
+            return b.score - a.score;
+          } else {
+            // Ascending: Lowest score first. TIE BREAKER: higher time is worse
+            if (a.score === b.score) return b.time_taken_seconds - a.time_taken_seconds;
+            return a.score - b.score;
+          }
+        });
+      }
+
+      function toggleSort() {
+        isDescending = !isDescending;
+        document.getElementById("sort-label").innerText = isDescending ? "Descending" : "Ascending";
+        renderTable();
+      }
+
+      function renderTable() {
+        sortData();
+        const tbody = document.getElementById("table-body");
+        tbody.innerHTML = "";
+
+        if (completedData.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">No completed tests yet.</td></tr>`;
+          return;
+        }
+
+        // ONLY SHOW TOP 12 IN THE UI
+        const top12 = completedData.slice(0, 12);
+
+        top12.forEach((student, index) => {
+          const tr = document.createElement("tr");
+
+          const mins = Math.floor(student.time_taken_seconds / 60);
+          const secs = student.time_taken_seconds % 60;
+          const timeStr = `${mins}m ${secs}s`;
+
+          const studentDataStr = encodeURIComponent(JSON.stringify(student));
+
+          tr.innerHTML = `
+                    <td class="rank-col">#${index + 1}</td>
+                    <td>${student.name}</td>
+                    <td style="text-transform: uppercase;">${student.roll_number}</td>
+                    <td class="score-col">${student.score}</td>
+                    <td>${timeStr}</td>
+                    <td>
+                        <button class="btn btn-download" onclick="downloadIndividual('${studentDataStr}')">
+                            📄 Answer Sheet (CSV)
+                        </button>
+                    </td>
+                `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      // ==========================================
+      // 4. EXPORT LOGIC
+      // ==========================================
+
+      // Helper function to build and download the CSV
+      function triggerCSVDownload(dataToExport, filename) {
+        if (dataToExport.length === 0) {
+          alert("No completed data to export.");
+          return;
+        }
+
+        let csvContent = "Rank,Name,Roll Number,Email,Score,Time Taken (Secs)\n";
+
+        dataToExport.forEach((student, index) => {
+          csvContent += `${index + 1},"${student.name}","${student.roll_number.toUpperCase()}","${student.email}",${student.score},${student.time_taken_seconds}\n`;
+        });
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+
+        link.setAttribute("href", url);
+        link.setAttribute("download", filename);
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // Export ALL students
+      function exportAllCSV() {
+        sortData(); // Ensure ranking is correct based on current UI sort
+        triggerCSVDownload(completedData, "PrepIT_Round2_All_Results.csv");
+      }
+
+      // Export ONLY the TOP 12 students
+      function exportTop12CSV() {
+        // Temporarily force Descending sort to guarantee we grab the actual winners,
+        // even if the admin was looking at the table in ascending mode.
+        const originalSortState = isDescending;
+        isDescending = true;
+        sortData();
+
+        const top12Data = completedData.slice(0, 12);
+        triggerCSVDownload(top12Data, "PrepIT_Round2_Top_12_Winners.csv");
+
+        // Restore the admin's original sorting preference
+        isDescending = originalSortState;
+        sortData();
+      }
+
+      // INDIVIDUAL ANSWER SHEET CSV
+      function downloadIndividual(encodedStudentStr) {
+        const student = JSON.parse(decodeURIComponent(encodedStudentStr));
+
+        let csvContent = `"CANDIDATE ANSWER SHEET"\n`;
+        csvContent += `"Name:","${student.name}"\n`;
+        csvContent += `"Roll Number:","${student.roll_number.toUpperCase()}"\n`;
+        csvContent += `"Email:","${student.email}"\n`;
+        csvContent += `"Final Score:","${student.score} / 7"\n`;
+        csvContent += `"Time Taken:","${student.time_taken_seconds} seconds"\n\n`;
+
+        csvContent += `"Q. No.","Question","Candidate Answer"\n`;
+
+        if (student.answers && Object.keys(student.answers).length > 0) {
+          let qCounter = 1;
+
+          for (const [questionKey, answer] of Object.entries(student.answers)) {
+            let cleanQuestion = questionKey.replace(/^Q\d+:\s*/, "");
+
+            let safeQuestion = cleanQuestion.replace(/"/g, '""');
+            let safeAnswer = answer.replace(/"/g, '""');
+
+            csvContent += `${qCounter},"${safeQuestion}","${safeAnswer}"\n`;
+            qCounter++;
+          }
+        } else {
+          csvContent += `"","No answers were recorded.",""\n`;
+        }
+
+        const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+
+        link.setAttribute("href", url);
+        link.setAttribute("download", `${student.roll_number.toUpperCase()}_AnswerSheet.csv`);
+        link.style.visibility = "hidden";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
+      // ==========================================
+      // 5. STARTUP
+      // ==========================================
+      setTimeout(fetchData, 500);
+      setInterval(fetchData, 30000);
+    </script>
+  </body>
+</html>

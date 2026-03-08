@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prep IT - Technical Round</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+      /* --- CSS STYLES --- */
+      :root {
+        --primary: #4caf50;
+        --dark: #1e1e2f;
+        --light: #f4f4f9;
+        --warning: #ff4757;
+        --info: #ffa502;
+        --coding: #0984e3;
+        --key-bg: #333;
+        --key-text: #fff;
+      }
+
+      /* THIS FIXES THE SCROLLBAR ISSUE */
+      * {
+        box-sizing: border-box;
+        font-family: "times new roman", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--dark);
+        color: var(--light);
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        scroll-behavior: smooth;
+        transition: padding-bottom 0.3s ease;
+
+        /* Anti-cheating */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      /* Dynamically applied only when keyboard is open so the user can scroll to the button */
+      body.keyboard-open {
+        padding-bottom: 350px;
+      }
+
+      /* --- TIMER & TRACKER PANEL --- */
+      #top-panel {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #2c2c3e;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        border: 2px solid var(--primary);
+        z-index: 1000;
+        min-width: 150px;
+      }
+
+      #timer-display {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--warning);
+        text-align: center;
+        margin-bottom: 10px;
+        font-family: monospace;
+      }
+
+      .tracker-btn {
+        width: 100%;
+        background: #444;
+        color: white;
+        border: none;
+        padding: 10px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: left;
+        transition: 0.2s;
+        display: flex;
+        justify-content: space-between;
+      }
+      .tracker-btn.answered {
+        border-left: 4px solid var(--primary);
+      }
+      .tracker-btn.unanswered {
+        border-left: 4px solid var(--warning);
+      }
+      .tracker-count {
+        background: #222;
+        padding: 2px 8px;
+        border-radius: 12px;
+      }
+
+      .container {
+        background: #2c2c3e;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      h1,
+      h2 {
+        text-align: center;
+        color: var(--primary);
+      }
+
+      /* --- LOGIN FORM STYLES --- */
+      .form-group {
+        margin-bottom: 15px;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #aaa;
+        font-size: 0.9rem;
+      }
+
+      input[type="text"],
+      input[type="password"],
+      input[type="email"] {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #444;
+        border-radius: 6px;
+        background: #1a1a24;
+        color: #fff;
+        font-size: 1.1rem;
+      }
+      input[readonly] {
+        cursor: pointer;
+      }
+
+      /* Highlight active input */
+      input.active-input {
+        border-color: var(--info) !important;
+        box-shadow: 0 0 10px rgba(255, 165, 2, 0.8) !important;
+        background: #1e1e2f !important;
+      }
+
+      /* --- VIRTUAL KEYBOARD STYLES --- */
+      #virtual-keyboard-container {
+        display: none; /* Hidden on load */
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #111;
+        padding: 15px 10px 20px 10px;
+        border-top: 4px solid var(--primary);
+        z-index: 2147483647;
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.8);
+      }
+
+      .kb-header {
+        display: flex;
+        justify-content: flex-end;
+        max-width: 800px;
+        margin: 0 auto 10px auto;
+      }
+
+      .close-kb-btn {
+        background: var(--warning);
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      #virtual-keyboard {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .kb-row {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .key {
+        background: var(--key-bg);
+        color: var(--key-text);
+        border: 1px solid #555;
+        padding: 15px 0;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transition: 0.1s;
+        flex: 1;
+        min-width: 35px;
+        text-align: center;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .key:active {
+        background: var(--primary);
+        color: #000;
+        transform: scale(0.95);
+      }
+      .key.wide {
+        flex: 1.5;
+        background: #444;
+      }
+      .key.space {
+        flex: 4;
+        background: #222;
+      }
+
+      /* --- QUIZ STYLES --- */
+      .question-card {
+        background: #363649;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px;
+        border-left: 5px solid var(--info);
+        transition: 0.3s;
+      }
+      .question-card.is-answered {
+        border-left: 5px solid var(--primary);
+      }
+      .question-card.type-coding {
+        border-left: 5px solid var(--coding);
+      }
+      .question-card.type-coding.is-answered {
+        border-left: 5px solid var(--primary);
+      }
+
+      .points-badge {
+        float: right;
+        background: #555;
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: normal;
+      }
+      .type-coding .points-badge {
+        background: var(--coding);
+        color: white;
+        font-weight: bold;
+      }
+
+      .options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 10px;
+      }
+      .option-btn {
+        background: #444;
+        border: none;
+        padding: 10px;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: left;
+        transition: 0.2s;
+      }
+      .option-btn:hover {
+        background: #555;
+      }
+      .option-btn.selected {
+        background: var(--primary);
+        color: #000;
+        font-weight: bold;
+      }
+
+      /* --- CODING QUESTION STYLES --- */
+      .pre-code-block {
+        background: #1e1e2f;
+        color: #a29bfe;
+        font-family: monospace;
+        padding: 10px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+        border-left: 3px solid #6c5ce7;
+      }
+      .code-input {
+        background: #000 !important;
+        color: #00ff00 !important;
+        font-family: monospace !important;
+        border: 1px solid #555 !important;
+      }
+      .run-btn {
+        background: var(--coding);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+      .feedback-msg {
+        margin-left: 10px;
+        font-weight: bold;
+      }
+
+      button.action-btn {
+        width: 100%;
+        padding: 15px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      @media (max-width: 800px) {
+        #top-panel {
+          position: static;
+          margin: 0 auto 20px auto;
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="top-panel" class="hidden">
+      <div id="timer-display">--:--</div>
+      <button class="tracker-btn answered" onclick="cycleQuestions('answered')">
+        Answered <span id="count-answered" class="tracker-count">0</span>
+      </button>
+      <button class="tracker-btn unanswered" onclick="cycleQuestions('unanswered')">
+        Unanswered <span id="count-unanswered" class="tracker-count">5</span>
+      </button>
+    </div>
+
+    <div class="container">
+      <div id="login-section">
+        <h1>Prep IT - Technical Round</h1>
+        <p style="text-align: center; color: #aaa">
+          Select a box below to type with the virtual keyboard.
+        </p>
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input
+            type="text"
+            id="user-name"
+            placeholder="Click here to type..."
+            readonly
+            class="vk-input"
+            onclick="setActive(this)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Roll Number</label>
+          <input
+            type="text"
+            id="user-roll"
+            placeholder="e.g. 23DS33 or 23-33"
+            readonly
+            class="vk-input"
+            onclick="setActive(this)"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>College Email</label>
+          <input
+            type="email"
+            id="user-email"
+            placeholder="Auto-generated"
+            readonly
+            style="background: #111; color: #888"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Set Password for Test</label>
+          <input
+            type="password"
+            id="user-password"
+            placeholder="Click here to type..."
+            readonly
+            class="vk-input"
+            onclick="setActive(this)"
+          />
+        </div>
+
+        <button class="action-btn" id="start-btn" onclick="startQuiz()">
+          Verify & Start Assessment
+        </button>
+      </div>
+
+      <div id="quiz-section" class="hidden">
+        <h2>Technical Assessment</h2>
+        <p style="text-align: right; font-size: 0.9rem; color: #888">Right Click & Copy Disabled</p>
+        <div id="questions-container"></div>
+        <button class="action-btn" id="submit-btn" onclick="submitQuiz(false)">
+          Submit Answers
+        </button>
+      </div>
+
+      <div id="result-section" class="hidden">
+        <h1>Assessment Complete</h1>
+        <div style="text-align: center; padding: 20px">
+          <h2 id="score-display" style="font-size: 3rem; margin: 10px 0">0/7</h2>
+          <p id="greeting-msg"></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="virtual-keyboard-container">
+      <div class="kb-header">
+        <button class="close-kb-btn" onclick="closeKeyboard()">Close Keyboard ▼</button>
+      </div>
+      <div id="virtual-keyboard">
+        <div class="kb-row">
+          <button type="button" class="key" onclick="typeKey('1')">1</button>
+          <button type="button" class="key" onclick="typeKey('2')">2</button>
+          <button type="button" class="key" onclick="typeKey('3')">3</button>
+          <button type="button" class="key" onclick="typeKey('4')">4</button>
+          <button type="button" class="key" onclick="typeKey('5')">5</button>
+          <button type="button" class="key" onclick="typeKey('6')">6</button>
+          <button type="button" class="key" onclick="typeKey('7')">7</button>
+          <button type="button" class="key" onclick="typeKey('8')">8</button>
+          <button type="button" class="key" onclick="typeKey('9')">9</button>
+          <button type="button" class="key" onclick="typeKey('0')">0</button>
+          <button type="button" class="key" onclick="typeKey('-')">-</button>
+          <button type="button" class="key" onclick="typeKey('=')">=</button>
+        </div>
+        <div class="kb-row">
+          <button type="button" class="key" onclick="typeKey('Q')">Q</button>
+          <button type="button" class="key" onclick="typeKey('W')">W</button>
+          <button type="button" class="key" onclick="typeKey('E')">E</button>
+          <button type="button" class="key" onclick="typeKey('R')">R</button>
+          <button type="button" class="key" onclick="typeKey('T')">T</button>
+          <button type="button" class="key" onclick="typeKey('Y')">Y</button>
+          <button type="button" class="key" onclick="typeKey('U')">U</button>
+          <button type="button" class="key" onclick="typeKey('I')">I</button>
+          <button type="button" class="key" onclick="typeKey('O')">O</button>
+          <button type="button" class="key" onclick="typeKey('P')">P</button>
+          <button type="button" class="key" onclick="typeKey('[')">[</button>
+          <button type="button" class="key" onclick="typeKey(']')">]</button>
+        </div>
+        <div class="kb-row">
+          <button type="button" class="key" onclick="typeKey('A')">A</button>
+          <button type="button" class="key" onclick="typeKey('S')">S</button>
+          <button type="button" class="key" onclick="typeKey('D')">D</button>
+          <button type="button" class="key" onclick="typeKey('F')">F</button>
+          <button type="button" class="key" onclick="typeKey('G')">G</button>
+          <button type="button" class="key" onclick="typeKey('H')">H</button>
+          <button type="button" class="key" onclick="typeKey('J')">J</button>
+          <button type="button" class="key" onclick="typeKey('K')">K</button>
+          <button type="button" class="key" onclick="typeKey('L')">L</button>
+          <button type="button" class="key" onclick="typeKey('\'')">'</button>
+          <button type="button" class="key wide" onclick="typeKey('BKSP')">⌫</button>
+        </div>
+        <div class="kb-row">
+          <button type="button" class="key" onclick="typeKey('Z')">Z</button>
+          <button type="button" class="key" onclick="typeKey('X')">X</button>
+          <button type="button" class="key" onclick="typeKey('C')">C</button>
+          <button type="button" class="key" onclick="typeKey('V')">V</button>
+          <button type="button" class="key" onclick="typeKey('B')">B</button>
+          <button type="button" class="key" onclick="typeKey('N')">N</button>
+          <button type="button" class="key" onclick="typeKey('M')">M</button>
+          <button type="button" class="key" onclick="typeKey(',')">,</button>
+          <button type="button" class="key" onclick="typeKey('(')">(</button>
+          <button type="button" class="key" onclick="typeKey(')')">)</button>
+          <button type="button" class="key space" onclick="typeKey('SPACE')">SPACE</button>
+          <button
+            type="button"
+            class="key wide"
+            style="background: var(--primary); color: #000"
+            onclick="handleEnter()"
+          >
+            ENTER ↵
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="prepit.js"></script>
+  </body>
+</html>
