@@ -70,22 +70,43 @@ window.addEventListener("scroll", () => {
 });
 
 // Contact form handling
-// GOOGLE SHEETS CONTACT FORM HANDLER
-const contactForm = document.querySelector(".contact-form");
+// EmailJS Contact Form Handler
+emailjs.init("-fyu6tN8DACFXTZlF"); //Public Key
+
+const contactForm = document.getElementById("google-contact-form");
 if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
-    const name = this.querySelector('input[type="text"]')?.value;
-    const email = this.querySelector('input[type="email"]')?.value;
-    const subject = this.querySelector('input[placeholder="Subject"]')?.value;
-    const message = this.querySelector("textarea")?.value;
+    e.preventDefault();
 
-    if (name && email && subject && message) {
-      e.preventDefault();
-      alert("Thank you for your message! We will get back to you soon.");
-      this.reset();
-    } else {
-      alert("Please fill in all fields.");
-    }
+    const submitBtn = document.getElementById("submit-btn");
+    const statusEl = document.getElementById("form-status");
+
+    submitBtn.textContent = "Sending...";
+    submitBtn.disabled = true;
+
+    const templateParams = {
+      from_name: this.querySelector('input[name="name"]').value,
+      from_email: this.querySelector('input[name="email"]').value,
+      subject: this.querySelector('input[name="subject"]').value,
+      message: this.querySelector('textarea[name="message"]').value,
+    };
+	//EmailJS:	 "SERVICE_ID", 		"TEMPLATE_ID"
+    emailjs.send("service_ocpf1mh", "template_742x3lp", templateParams)
+      .then(() => {
+        statusEl.textContent = "Message sent! We'll get back to you soon.";
+        statusEl.style.color = "var(--primary)";
+		console.log("Contact Email Sent Successfully!")
+        this.reset();
+      })
+      .catch((error) => {
+        statusEl.textContent = "Something went wrong. Please try again.";
+        statusEl.style.color = "#ff4d4d";
+        console.error("EmailJS error:", error);
+      })
+      .finally(() => {
+        submitBtn.textContent = "Send Message";
+        submitBtn.disabled = false;
+      });
   });
 }
 
