@@ -41,7 +41,7 @@ const allTeamData = {
                 lead: { name: "Maseera Rumani", title: "Design Head", image: "Images/Maseera_rumani.png", linkedin: "https://www.linkedin.com/in/maseera-rumani-09240628a" },
                 members: [
                     { name: "Madiha Lasne", title: "Design Member", image: "Images/MADIHA_LASNE.png", linkedin: "https://www.linkedin.com/in/madiha-lasne-597404330" },
-                    { name: "Rida Dhanse", title: "Design Member", image: "Images/RIDA_DHANSE.png", linkedin: "#" }
+                    { name: "Rida Dhanse", title: "Design Member", image: "Images/RIDA_DHANSE.png", linkedin: "https://www.linkedin.com/in/ridadhanse" }
                 ]
             },
             {
