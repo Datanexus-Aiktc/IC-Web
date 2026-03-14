@@ -4,9 +4,9 @@ const accordionContainer = document.getElementById('teams-accordion-container');
 const allTeamData = {
     '2025': {
         faculty: [
-            { name: "Prof. Zeeshan Khan", title: "HOD, Data Science", image: "Images/Zeeshan_Khan.jpeg", linkedin: "#" },
-            { name: "Dr. Tabassum Maktum", title: "Former HOD", image: "Images/Tabassum_Mam.jpg", linkedin: "#" },
-            { name: "Dr. Renuka Chimankare", title: "Faculty Coordinator", image: "Images/Renuka_Mam.jpg", linkedin: "#" },
+            { name: "Prof. Zeeshan Khan", title: "HOD, Data Science", image: "Images/Zeeshan_Khan.jpeg", linkedin: "https://www.linkedin.com/in/zeeshan-khan-9584b3185" },
+            { name: "Dr. Tabassum Maktum", title: "Former HOD", image: "Images/Tabassum_Mam.jpg", linkedin: "https://www.linkedin.com/in/dr-tabassum-maktum-3020b8260" },
+            { name: "Dr. Renuka Chimankare", title: "Faculty Coordinator", image: "Images/Renuka_Mam.jpg", linkedin: "https://www.linkedin.com/in/dr-renuka-chimankare-9676b012b" },
             { name: "To Be Announced", title: "Faculty Member", image: "Images/nexus.png", linkedin: "#" }
         ],
         executives: [
@@ -59,16 +59,16 @@ const allTeamData = {
         ],
         volunteers: [
             { name: "Volunteer 1", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
-            { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.png", linkedin: "#" },
+            { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.png", linkedin: "https://www.linkedin.com/in/saaim-rais-7531a7328" },
             { name: "Volunteer 3", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Volunteer 4", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
-            { name: "Volunteer 5", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
+            { name: "Volunteer 5", title: "Volunteer", image: "Images/nexus.png", linkedin: "https://www.linkedin.com/in/usaid-d-8abb83292" },
             { name: "Volunteer 6", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" }
         ]
     },
     '2026': {
         faculty: [
-            { name: "Prof. Zeeshan Khan", title: "HOD, Data Science", image: "Images/Zeeshan_Khan.jpeg", linkedin: "#" },
+            { name: "Prof. Zeeshan Khan", title: "HOD, Data Science", image: "Images/Zeeshan_Khan.jpeg", linkedin: "https://www.linkedin.com/in/zeeshan-khan-9584b3185" },
             { name: "To Be Announced", title: "Faculty Member", image: "Images/nexus.png", linkedin: "#" }
         ],
         executives: [
