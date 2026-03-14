@@ -59,7 +59,7 @@ const allTeamData = {
         ],
         volunteers: [
             { name: "Volunteer 1", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
-            { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.jpeg", linkedin: "#" },
+            { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.png", linkedin: "#" },
             { name: "Volunteer 3", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Volunteer 4", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Volunteer 5", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
