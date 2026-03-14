@@ -146,7 +146,7 @@ body {
 }
 
 .accordion-content.open {
-    max-height: 10000px; /* Large enough to fit all content */
+    max-height: none; /* Allow unlimited height for content */
     padding: 40px;
 }
 
