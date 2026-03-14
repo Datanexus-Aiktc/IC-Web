@@ -63,7 +63,7 @@ const allTeamData = {
             { name: "Volunteer 3", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Volunteer 4", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Usaid Duldule", title: "Volunteer", image: "Images/Usaid.png", linkedin: "https://www.linkedin.com/in/usaid-d-8abb83292" },
-            { name: "Volunteer 6", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" }
+            { name: "Biswajit Parida", title: "Volunteer", image: "Images/biswajit.jpeg", linkedin: "https://www.linkedin.com/in/biswajit-parida-8b6717350" }
         ]
     },
     '2026': {
