@@ -62,7 +62,7 @@ const allTeamData = {
             { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.png", linkedin: "https://www.linkedin.com/in/saaim-rais-7531a7328" },
             { name: "Volunteer 3", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Volunteer 4", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
-            { name: "Usaid Duldule", title: "Volunteer", image: "Images/nexus.png", linkedin: "https://www.linkedin.com/in/usaid-d-8abb83292" },
+            { name: "Usaid Duldule", title: "Volunteer", image: "Images/usaid.png", linkedin: "https://www.linkedin.com/in/usaid-d-8abb83292" },
             { name: "Volunteer 6", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" }
         ]
     },
