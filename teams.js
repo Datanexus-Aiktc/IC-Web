@@ -58,7 +58,7 @@ const allTeamData = {
             }
         ],
         volunteers: [
-            { name: "Volunteer 1", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
+            { name: "Aakif Kohari", title: "Volunteer", image: "Images/aakif.jpeg", linkedin: "https://www.linkedin.com/in/aakif-kohari" },
             { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.png", linkedin: "https://www.linkedin.com/in/saaim-rais-7531a7328" },
             { name: "Volunteer 3", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Volunteer 4", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
