@@ -51,7 +51,7 @@ const allTeamData = {
                     { name: "Fiza Peerkhan", title: "Media Head", image: "Images/FIZA_PEERKHAN.png", linkedin: "https://www.linkedin.com/in/fiza-peerkhan-222b58289" }
                 ],
                 members: [
-                    { name: "Mahek Bagdadi", title: "Media Member", image: "Images/MAHEK_BAGDADI.png", linkedin: "#" },
+                    { name: "Mahek Bagdadi", title: "Media Member", image: "Images/MAHEK_BAGDADI.png", linkedin: "https://www.linkedin.com/in/mahek-bagdadi-baa065351" },
                     { name: "Ahmed Khan", title: "Marketing Member", image: "Images/AHMED_KHAN.png", linkedin: "https://www.linkedin.com/in/khan-mohammad-ahmed-tajuddin-2ab076326" },
                     { name: "Umair Khan", title: "Media Member", image: "Images/UMAIR_KHAN.png", linkedin: "https://tinyurl.com/ybpz4bp8" }
                 ]
