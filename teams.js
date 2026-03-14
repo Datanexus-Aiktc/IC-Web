@@ -38,7 +38,7 @@ const allTeamData = {
             },
             {
                 name: "Design Team",
-                lead: { name: "Maseera Rumani", title: "Design Head", image: "Images/Maseera_rumani.png", linkedin: "http://nkedin.com/in/maseera-rumani-09240628a" },
+                lead: { name: "Maseera Rumani", title: "Design Head", image: "Images/Maseera_rumani.png", linkedin: "https://www.linkedin.com/in/maseera-rumani-09240628a" },
                 members: [
                     { name: "Madiha Lasne", title: "Design Member", image: "Images/MADIHA_LASNE.png", linkedin: "https://www.linkedin.com/in/madiha-lasne-597404330" },
                     { name: "Rida Dhanse", title: "Design Member", image: "Images/RIDA_DHANSE.png", linkedin: "#" }
@@ -51,7 +51,7 @@ const allTeamData = {
                     { name: "Fiza Peerkhan", title: "Media Head", image: "Images/FIZA_PEERKHAN.png", linkedin: "https://www.linkedin.com/in/fiza-peerkhan-222b58289" }
                 ],
                 members: [
-                    { name: "Mahek Bagdadi", title: "Media Member", image: "Images/MAHEK_BAGDADI.png", linkedin: "https://www.linkedin.com/public-profile/settings" },
+                    { name: "Mahek Bagdadi", title: "Media Member", image: "Images/MAHEK_BAGDADI.png", linkedin: "#" },
                     { name: "Ahmed Khan", title: "Marketing Member", image: "Images/AHMED_KHAN.png", linkedin: "https://www.linkedin.com/in/khan-mohammad-ahmed-tajuddin-2ab076326" },
                     { name: "Umair Khan", title: "Media Member", image: "Images/UMAIR_KHAN.png", linkedin: "https://tinyurl.com/ybpz4bp8" }
                 ]
@@ -62,7 +62,7 @@ const allTeamData = {
             { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.png", linkedin: "https://www.linkedin.com/in/saaim-rais-7531a7328" },
             { name: "Volunteer 3", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
             { name: "Volunteer 4", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
-            { name: "Volunteer 5", title: "Volunteer", image: "Images/nexus.png", linkedin: "https://www.linkedin.com/in/usaid-d-8abb83292" },
+            { name: "Usaid Duldule", title: "Volunteer", image: "Images/nexus.png", linkedin: "https://www.linkedin.com/in/usaid-d-8abb83292" },
             { name: "Volunteer 6", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" }
         ]
     },
