@@ -61,7 +61,7 @@ const allTeamData = {
             { name: "Aakif Kohari", title: "Volunteer", image: "Images/aakif.jpeg", linkedin: "https://www.linkedin.com/in/aakif-kohari" },
             { name: "Saaim Rais", title: "Volunteer", image: "Images/saaim.png", linkedin: "https://www.linkedin.com/in/saaim-rais-7531a7328" },
             { name: "Adina Hawaldar", title: "Volunteer", image: "Images/adina.jpeg", linkedin: "https://www.linkedin.com/in/adina-hawaldar-17az6" },
-            { name: "Volunteer 4", title: "Volunteer", image: "Images/nexus.png", linkedin: "#" },
+            { name: "Idrisi Mumtarin", title: "Volunteer", image: "Images/mumtarin.jpeg", linkedin: "https://www.linkedin.com/in/idrisi-mumtarin-5610923a3" },
             { name: "Usaid Duldule", title: "Volunteer", image: "Images/Usaid.png", linkedin: "https://www.linkedin.com/in/usaid-d-8abb83292" },
             { name: "Biswajit Parida", title: "Volunteer", image: "Images/biswajit.jpeg", linkedin: "https://www.linkedin.com/in/biswajit-parida-8b6717350" }
         ]
